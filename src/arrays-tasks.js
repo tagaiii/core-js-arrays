@@ -353,8 +353,15 @@ function calculateBalance(arr) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+function createChunks(arr, chunkSize) {
+  return arr.reduce((chunks, item, index) => {
+    const chunkIndex = Math.floor(index / chunkSize);
+    if (!chunks[chunkIndex]) {
+      chunks.push([]);
+    }
+    chunks[chunkIndex].push(item);
+    return chunks;
+  }, []);
 }
 
 /**
@@ -469,8 +476,10 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  return arr.map(
+    (element) => `#${element.toString(16).padStart(6, 0).toUpperCase()}`
+  );
 }
 
 /**
